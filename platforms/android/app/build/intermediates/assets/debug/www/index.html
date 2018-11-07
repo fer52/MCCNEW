@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+
+<head>
+    <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>Hello World</title>
+</head>
+
+<body>
+    <div class="app">
+        <!-- <h1>Apache Cordova</h1>
+        <div id="deviceready" class="blink">
+            <p class="event listening">Connecting to Device</p>
+            <p class="event received">Device is Ready</p>
+        </div> -->
+    </div>
+
+    <!-- logon page -->
+    <div id="logon" data-role="page" data-mini="true">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a id="changeDateInfo" role="button" data-icon="check" data-role="button" data-inline="true" class="ui-link ui-btn ui-btn-a ui-icon-check ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all"
+                data-theme="d">Corrección</a>
+            <!--<a id="validateFileLoad" role="button" data-icon="check"  data-role="button" data-inline="true" class="ui-link ui-btn ui-btn-a ui-icon-check ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all" data-theme="d">Corrección</a>-->
+            <!--<a id="changeInfoFile" role="button" data-icon="gear"  data-role="button" data-inline="true" class="ui-link ui-btn ui-btn-a ui-icon-gear ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all" data-theme="d"></a>-->
+            <!--<a id="restoreBackUp" role="button" data-icon="gear"  data-role="button" data-inline="true" class="ui-link ui-btn ui-btn-a ui-icon-gear ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all" data-theme="d"></a>-->
+            <h1>MCC</h1>
+        </div>
+        <div data-role="content">
+
+            Usuario :
+            <input type="text" id="userName" value="" />
+            Clave:
+            <input type="password" id="pwd" value="" />
+            Fecha de Trabajo:
+                  <input type="date" data-clear-btn="true" name="date2" id="date2" value="">
+            <button id="btnLogin">Ingreso</button>
+            <br />
+            <label for="selectFile" class="select">Archivo:</label>
+            <!--<select name="selectFile" id="selectFile" data-native-menu="false">
+                    </select>-->
+            <fieldset id="selectFile" data-role="controlgroup">
+                <!--<input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1" checked="checked">
+                      <label for="radio-choice-1">Cat</label>
+                     
+                      <input type="radio" name="radio-choice" id="radio-choice-2" value="choice-2">
+                      <label for="radio-choice-2">Dog</label>
+                     
+                      <input type="radio" name="radio-choice" id="radio-choice-3" value="choice-3">
+                      <label for="radio-choice-3">Hamster</label>
+                     
+                      <input type="radio" name="radio-choice" id="radio-choice-4" value="choice-4">
+                      <label for="radio-choice-4">Lizard</label>-->
+            </fieldset>
+            <br /><br />
+            <!--< <label>Version 5.9</label>-->
+            <label id="labelVersion">update</label>
+        </div>
+    </div>
+
+    <!-- home page -->
+    <div id="home" data-role="page" data-mini="true">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a id="dateFile" role="button" data-icon="calendar" data-iconpos="notext" data-role="button" data-inline="true"
+                class="ui-link ui-btn ui-btn-a ui-icon-calendar ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all"
+                data-theme="d"></a>
+            <h1>MCC</h1>
+            <div data-role="controlgroup" data-type="horizontal" class="ui-btn-right ui-controlgroup ui-controlgroup-horizontal ui-corner-all">
+                <div class="ui-controlgroup-controls ">
+                    <!--<a id="newDownload" role="button" data-icon="arrow-d" data-iconpos="notext" data-role="button" data-inline="true" class="ui-link ui-btn ui-btn-a ui-icon-arrow-d ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all" data-theme="d">.</a>-->
+                    <a id="logOut" role="button" data-icon="power" data-iconpos="notext" data-role="button" data-inline="true"
+                        class="ui-link ui-btn ui-btn-a ui-icon-power ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all"
+                        data-theme="d">.</a>
+                    <a id="newComment" href="#comment" data-transition="flip" role="button" data-icon="comment"
+                        data-iconpos="notext" data-role="button" data-inline="true" class="ui-link ui-btn ui-btn-a ui-icon-comment ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all"
+                        data-theme="d">.</a>
+                    <a id="newFileRead" role="button" data-icon="tag" data-iconpos="notext" data-role="button"
+                        data-inline="true" class="ui-link ui-btn ui-btn-a ui-icon-tag ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all"
+                        data-theme="d">.</a>
+                </div>
+            </div>
+        </div>
+
+        <div data-role="content">
+            <ul data-role="listview" id="clienteView" data-inset="true" data-theme="d">
+                <li>
+                    <a href="#cliente" data-transition="slide">Agregar Clientes </a>
+                </li>
+            </ul>
+            <ul data-role="listview" data-inset="true" data-theme="d">
+                <li>
+                    <a href="#addcredito" data-transition="slide">Agregar Credito</a>
+                </li>
+            </ul>
+            <ul data-role="listview" data-inset="true" data-theme="d">
+                <li>
+                    <a href="#credito" data-transition="slide">Agregar Abono</a>
+                </li>
+            </ul>
+            <ul data-role="listview" data-inset="true" data-theme="d">
+                <li>
+                    <a href="#abonoRuta" data-transition="slide">Ruta</a>
+                </li>
+            </ul>
+            <ul data-role="listview" data-inset="true" data-theme="d">
+                <li>
+                    <a href="#abonoRutaPend" data-transition="slide">Ruta-Pendientes</a>
+                </li>
+            </ul>
+            <ul data-role="listview" data-inset="true" data-theme="d">
+                <li>
+                    <a href="#gasto" data-transition="slide">Gastos</a>
+                </li>
+            </ul>
+            <ul data-role="listview" data-inset="true" data-theme="d">
+                <li>
+                    <a href="#resumen" data-transition="slide">Resumen <span id="numberOfFlights"></span></a>
+                </li>
+            </ul>
+            <ul data-role="listview" data-inset="true" data-theme="d">
+                <li>
+                    <a href="#historicocredito" data-transition="slide">Historial Credito</a>
+                </li>
+            </ul>
+            <ul data-role="listview" data-inset="true" data-theme="d">
+                <li>
+                    <a href="#settings" data-transition="slide">Configuración</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+    <!--client date page-->
+    <div id="dateFormatPage" data-role="page" data-add-back-btn="true">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a data-role="button" href="#home" class="ui-btn-left" data-theme="d">Regresar</a>
+            <h1>Verificación de Fecha</h1>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" data-inset="true" data-theme="d">
+                <li>
+                    Fechas de trabajo:
+                </li>
+                <li>
+                        <div id="dataGroup" data-role="controlgroup">
+                            </div>
+                </li>
+                <li>
+                    Nueva Fecha:
+                          <input type="date" data-clear-btn="true" name="dateNew" id="dateNew" value="">
+                </li>
+                <li>
+                    <button id="btnDateNew">Cambiar Fecha</button>
+                </li>
+                <li>
+                    <button class="ui-btn ui-icon-tag ui-btn-icon-left" id="btnGenerate">Generar Archivo</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--boardingPass page-->
+    <div id="cliente" data-role="page" data-add-back-btn="true">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a data-role="button" href="#home" class="ui-btn-left" data-theme="d">Regresar</a>
+            <h1>Nuevo Cliente</h1>
+            <a data-role="button" id="saveClient" class="ui-btn-right" data-theme="d">Guardar</a>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" data-inset="true" data-theme="d">
+                <li>
+                    <label for="txtIdCliente">Id Cliente:</label>
+                    <input type="text" name="txtIdCliente" id="txtIdCliente" value="" readonly="true">
+                </li>
+                <li>
+                    <label for="txtNoIdent">No. Identificación:</label>
+                    <input type="text" name="txtNoIdent" id="txtNoIdent" value="">
+                </li>
+                <li>
+                    <label for="txtNit">Número Tributario</label>
+                    <input type="text" name="txtNit" id="txtNit" value="">
+                </li>
+                <li>
+                    <label for="txtNombre">Nombre:</label>
+                    <input type="text" name="txtNombre" id="txtNombre" value="">
+                </li>
+                <li>
+                    <label for="txtdomicilio">Domicilio:</label>
+                    <input type="text" name="txtdomicilio" id="txtdomicilio" value="">
+                </li>
+                <li>
+                    <label for="txttel">Teléfono:</label>
+                    <input type="number" name="txttel" id="txttel" value="">
+                </li>
+                <li>
+                    <label for="txtcel">Celular:</label>
+                    <input type="number" name="txtcel" id="txtcel" value="">
+                </li>
+                <li>
+                    <label for="txtcorreo">Correo Electronico:</label>
+                    <input type="text" name="txtcorreo" id="txtcorreo" value="">
+                </li>
+                <li>
+                    <label for="flipSexo">Sexo:</label>
+                    <select name="flipSexo" id="flipSexo" data-role="slider">
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                    </select>
+                </li>
+                <li>
+                    <label for="selectActividad" class="select">Actividad:</label>
+                    <select name="selectActividad" id="selectActividad" data-native-menu="true">
+                    </select>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--myTrips page-->
+    <div id="addcredito" data-role="page" data-add-back-btn="true">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a data-role="button" href="#home" class="ui-btn-left" data-theme="d">Regresar</a>
+            <h1>Nuevo Credito</h1>
+            <a data-role="button" id="saveCredit" class="ui-btn-right" data-theme="d">Guardar</a>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" id="lstNewCreditU" data-inset="true" data-theme="d">
+                <li>
+                    <input type="text" name="txtUuidClientCredit" id="txtUuidClientCredit" value="" style="display:none">
+                    <label for="searchCliente">Cliente:</label>
+                    <input type="text" data-clear-btn="true" name="searchCliente" id="searchCliente" value=""
+                        placeholder="Buscar Cliente...">
+                    <div data-role="collapsible" id="collapsePanel" data-collapsed="true">
+                            <h4 id="titleSel">Clientes</h4>
+                            <ul data-role="listview" id="listClientCredit"></ul>
+                    </div>
+                    <input type="text" name="txtCliente" id="txtCliente" value="" readonly>
+                </li>
+                <li>
+                    <label for="txtIdCreditoU">Id Credito:</label>
+                    <input type="text" name="txtIdCreditoU" id="txtIdCreditoU" value="" readonly>
+                </li>
+                <li>
+                    <label for="txtMontoP">Monto de Prestamo:</label>
+                    <input type="number" name="txtMontoP" id="txtMontoP" value="0">
+                </li>
+                <li>
+                    <label id="lblMontoGA" for="txtMontoGA">Gastos Administrativos:</label>
+                    <input type="number" name="txtMontoGA" id="txtMontoGA" value="0">
+                </li>
+                <li>
+                    <label for="selectPorcentaje" class="select">Porcentaje:</label>
+                    <select name="selectPorcentaje" id="selectPorcentaje" data-native-menu="false">
+                    </select>
+                </li>
+            </ul>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" id="lstNewCredit" data-inset="true" data-theme="d">
+                <li>
+                    <label for="txtFI">Fecha de Inicio:</label>
+                    <input type="text" name="txtFI" id="txtFI" value="" readonly>
+                </li>
+                <li>
+                    <label for="txtFF">Fecha Fin:</label>
+                    <input type="text" name="txtFF" id="txtFF" value="" readonly>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--myTrips page-->
+    <div id="abono" data-role="page" data-add-back-btn="true">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a data-role="button" id="regresaAbono" class="ui-btn-left" data-theme="d">Regresar</a>
+            <h1></h1>
+            <div data-role="controlgroup" data-type="horizontal" class="ui-btn-right ui-controlgroup ui-controlgroup-horizontal ui-corner-all">
+                <div class="ui-controlgroup-controls ">
+                    <!--<a id="newDownload" role="button" data-icon="arrow-d" data-iconpos="notext" data-role="button" data-inline="true" class="ui-link ui-btn ui-btn-a ui-icon-arrow-d ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all" data-theme="d">.</a>
+                        <a data-role="button" id="saveAbono" class="ui-btn-right" data-theme="d">Guardar</a>-->
+                    <a id="viewHistory" role="button" data-icon="grid" data-iconpos="notext" data-role="button"
+                        data-inline="true" class="ui-link ui-btn ui-btn-a ui-icon-grid ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all"
+                        data-theme="d">.</a>
+
+                    <a id="viewPerson" role="button" data-icon="info" data-iconpos="notext" data-role="button"
+                        data-inline="true" class="ui-link ui-btn ui-btn-a ui-icon-info ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all"
+                        data-theme="d">.</a>
+
+                    <a id="spacebtn2" role="button" data-iconpos="notext" data-role="button" data-inline="true" class="ui-link ui-btn ui-btn-a ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all"
+                        data-theme="d"></a>
+                    <a id="spacebtn3" role="button" data-iconpos="notext" data-role="button" data-inline="true" class="ui-link ui-btn ui-btn-a ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all"
+                        data-theme="d"></a>
+
+                    <a id="saveAbono" role="button" data-icon="check" data-iconpos="notext" data-role="button"
+                        data-inline="true" class="ui-link ui-btn ui-btn-a ui-icon-check ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all"
+                        data-theme="d">.</a>
+                </div>
+            </div>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" data-inset="true" data-theme="d">
+                <li>
+                    <input type="text" name="txtUuidClient" id="txtUuidClient" value="" style="display:none">
+                    <input type="text" name="txtUuidCredit" id="txtUuidCredit" value="" style="display:none">
+                    <label for="txtIdCreditoA">Id Credito:</label>
+                    <input type="text" name="txtIdCreditoA" id="txtIdCreditoA" value="" disabled="true">
+                </li>
+                <li>
+                    <label>Días en Cero:</label>
+                    <label id="lblDiasCero"></label>
+                </li>
+                <li>
+                    <label for="txtTotal">Monto Prestamo + Interes:</label>
+                    <input type="text" name="txtTotal" id="txtTotal" value="" disabled="true">
+                </li>
+                <li>
+                    <label for="txtActual">S. Actual/S. Actual menos Abono:</label>
+                    <input type="text" name="txtActual" dataSActual="0" id="txtActual" value="" readonly>
+                </li>
+                <li>
+                    <label for="txtAbono">Monto de Abono:</label>
+                    <input type="number" name="txtAbono" id="txtAbono" value="">
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--flightStatus page-->
+    <div id="credito" data-role="page" data-add-back-btn="true">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a data-role="button" href="#home" class="ui-btn-left" data-theme="d">Regresar</a>
+            <h1>Abono a Credito</h1>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" id="Ul0" data-inset="true" data-theme="d">
+                <li>
+                    <label for="searchCredito">Busqueda:</label>
+                    <input type="text" data-clear-btn="true" id="searchCredito" value="" placeholder="Buscar Credito...">
+                </li>
+                <li>
+                    <ul data-role="listview" name="lstCredito" id="lstCredito" data-inset="true" data-theme="d">
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="comment" data-role="page" data-add-back-btn="true">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a data-role="button" href="#home" data-transition="flip" class="ui-btn-left" data-theme="d">Regresar</a>
+            <h1>Comentarios</h1>
+        </div>
+        <div data-role="content">
+                 <textarea cols="30" rows="20" name="textarea-1" id="textarea-1">Textarea</textarea>
+        </div>
+    </div>
+
+    <div id="resumen" data-role="page" data-add-back-btn="true">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a data-role="button" href="#home" class="ui-btn-left" data-theme="d">Regresar</a>
+            <h1>Resumen</h1>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" data-inset="true" data-theme="d">
+                <li>
+                    <label id="txtbaseMoney">Base</label>
+                    <input type="text" data-clear-btn="true" id="baseMoney" value="0">
+                </li>
+                <li><a href="#detailPrestamos" data-transition="slide">
+                        <label id="txtPrestamoR">Prestamos</label>
+                        <label id="txtPrestamoRV">0</label>
+                    </a>
+                </li>
+                <li>
+                    <label id="txtGastoR">Gastos</label>
+                    <label id="txtGastoRV">0</label>
+                </li>
+                <li>
+                    <label id="txtAbonoR">Abono</label>
+                    <label id="txtAbonoRv">0</label>
+                </li>
+                <li>
+                    <label id="lblTotalBase">Total de Efectivo</label>
+                    <label id="txtTotalBase">0</label>
+                </li>
+                <li>
+                    <label id="lblTotalEstimado0">Abono Est. - Abonos cobrados y cuota</label>
+                    <label id="txtTotalEstimado0">0</label>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="detailPrestamos" data-role="page" data-add-back-btn="true">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a data-role="button" href="#resumen" class="ui-btn-left" data-theme="d">Regresar</a>
+            <h1>Creditos del Día</h1>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" id="Ul1P" data-inset="true" data-theme="d">
+                <li>
+                    <ul data-role="listview" id="lstCreditoDia" data-inset="true" data-theme="d">
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="historicocredito" data-role="page" data-add-back-btn="true">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a data-role="button" href="#home" class="ui-btn-left" data-theme="d">Regresar</a>
+            <h1>Historial de Creditos</h1>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" id="Ul1H" data-inset="true" data-theme="d">
+                <li>
+                    <label for="searchCreditoHist">Busqueda:</label>
+                    <input type="text" data-clear-btn="true" id="searchCreditoHist" value="" placeholder="Buscar Credito...">
+                </li>
+                <li>
+                    <ul data-role="listview" id="lstCreditoHistorico" data-inset="true" data-theme="d">
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="abonoRuta" data-role="page">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a data-role="button" href="#home" class="ui-btn-left" data-theme="d">Regresar</a>
+            <h1>Ruta</h1>
+            <!--<a data-role="button" id="findUltimo" class="ui-btn-right" data-theme="d">Ultimo de Ruta</a>-->
+            <div data-role="controlgroup" data-type="horizontal" class="ui-btn-right ui-controlgroup ui-controlgroup-horizontal ui-corner-all">
+                <div class="ui-controlgroup-controls ">
+                    <a id="findLast" role="button" data-icon="back" data-iconpos="notext" data-role="button"
+                        data-inline="true" class="ui-link ui-btn ui-btn-a ui-icon-back ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all"
+                        data-theme="d">.</a>
+                    <a id="findUltimo" role="button" data-icon="action" data-iconpos="notext" data-role="button"
+                        data-inline="true" class="ui-link ui-btn ui-btn-a ui-icon-action ui-btn-icon-notext ui-btn-inline ui-shadow ui-corner-all"
+                        data-theme="d">.</a>
+                </div>
+            </div>
+        </div>
+        <div data-role="content">
+            <!--<div class="rutaX" style="border:0px;position: relative;width: 100%;height: 300px;overflow: auto;">-->
+            <ul data-role="listview" id="Ul1R" data-inset="true" data-theme="d">
+                <li id="liRuta">
+                    <ul data-role="listview" id="lstCreditoRuta" data-inset="true" data-theme="d">
+                    </ul>
+                </li>
+            </ul>
+            <!--</div>-->
+        </div>
+        <div data-role="footer" data-position="fixed">
+                <a data-role="button" id="prev" class="ui-btn-left" data-theme="d">
+            </a>
+            <h1 id="pageNavigator">Pagina 0/0</h1>
+            <a data-role="button" id="next" class="ui-btn-right" data-theme="d">>></a>
+        </div>
+    </div>
+
+    <div id="abonoRutaPend" data-role="page">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a data-role="button" href="#home" class="ui-btn-left" data-theme="d">Regresar</a>
+            <h1>Pendientes</h1>
+            <a data-role="button" id="abonoCero" class="ui-btn-right" data-theme="d">Abono 0</a>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" id="Ul1RP" data-inset="true" data-theme="d">
+                <li id="liPendiente">
+                    <ul data-role="listview" id="lstCreditoPendiente" data-inset="true" data-theme="d">
+                    </ul>
+                </li>
+            </ul>
+            <!--</div>-->
+        </div>
+        <div data-role="footer" data-position="fixed">
+                <a data-role="button" id="prevPend" class="ui-btn-left" data-theme="d">
+            </a>
+            <h1 id="pageNavigatorPend">Pagina 0/0</h1>
+            <a data-role="button" id="nextPend" class="ui-btn-right" data-theme="d">>></a>
+        </div>
+    </div>
+
+    <div id="gasto" data-role="page">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a data-role="button" href="#home" class="ui-btn-left" data-theme="d">Regresar</a>
+            <h1>Listado de Gastos</h1>
+            <a data-role="button" id="saveGasto" class="ui-btn-right" data-theme="d">Guardar</a>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" id="Ul2H" data-inset="true" data-theme="d">
+                <li>
+                    <ul data-role="listview" id="lstGastos" data-inset="true" data-theme="d">
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="viewDetail" data-role="page" data-add-back-btn="true">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a data-role="button" id="returnHistory" class="ui-btn-left" data-theme="d">Regresar</a>
+            <h1>Detalle de Creditos</h1>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" id="Ul4H" data-inset="true" data-theme="d">
+                <li>
+                    <label>Id Credito:</label>
+                    <label id="lblCreditoHist"></label>
+                </li>
+                <li>
+                    <ul data-role="listview" id="lstViewDetail" data-inset="true" data-theme="d">
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="changeInfo" data-role="page" data-add-back-btn="true">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a data-role="button" href="#logon" class="ui-btn-left" data-theme="d">Regresar</a>
+            <h1>Detalle de Archivo</h1>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" id="Ul8H" data-inset="true" data-theme="d">
+                <li>
+                    <label>Archivo a Modificar:</label>
+                    <label id="lblCFileMod"></label>
+                </li>
+                <li>
+                    <label>Fechas Existentes:</label>
+                    <ul data-role="listview" id="lstFileDetail" data-inset="true" data-theme="d">
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!--Settings page-->
+    <div id="settings" data-role="page" data-add-back-btn="true">
+        <div data-role="header" data-position="fixed" data-tap-toggle="false">
+            <a data-role="button" href="#home" class="ui-btn-left" data-theme="d">Regresar</a>
+            <h1>Configuración</h1>
+        </div>
+        <div data-role="content">
+            <ul data-role="listview" id="Ul4" data-inset="true" data-theme="d">
+                <li><label for="flip-1">Visible:</label>
+                    <select name="flip-1" id="flip-1" data-role="slider">
+                        <option value="off">Off</option>
+                        <option value="on">On</option>
+                    </select>
+                </li>
+                <li><label>Llave:</label><label id="keyDevice"></label></li>
+            </ul>
+            <ul data-role="listview" id="detailCnn" data-inset="true" data-theme="d">
+                <li>
+                    <input type="text" data-clear-btn="true" id="keyDeviceCnn" value="" placeholder="Llave de Dispositivo...">
+                </li>
+                <li>
+                    <input type="text" data-clear-btn="true" id="nameFileKey" value="" placeholder="Nombre de Archivo...">
+                </li>
+                <li id="downLoadFile"><a href="#" data-transition="slide">Descargar Archivo</a></li>
+                <li id="resumLoadFile"><a href="#" data-transition="slide">Ver Resumen</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="js/fileHelper.js"></script>
+    <script src="js/diveInfo.js" type="text/javascript"></script>
+    <script src="js/mainLocalStorage.js" type="text/javascript"></script>
+    <script src="js/mainFileTransfer.js" type="text/javascript"></script>
+    <script src="js/mainFile.js" type="text/javascript"></script>
+    <script src="js/main.js" type="text/javascript"></script>
+    <script src="js/validate.js" type="text/javascript"></script>
+
+    <script>
+
+        mcc = new mccApp();
+        mcc.run();
+
+            //activeValidate()
+    </script>
+</body>
+
+</html>
